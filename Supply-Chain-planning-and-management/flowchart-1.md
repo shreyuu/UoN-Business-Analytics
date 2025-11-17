@@ -1,0 +1,147 @@
+```mermaid
+%%{ init: { "flowchart": { "curve": "linear" } } }%%
+flowchart TD
+
+%% ==========================================================
+%% TIER-2 RAW MATERIAL SUPPLY
+%% ==========================================================
+
+subgraph RM[Tier-2 Raw Materials Suppliers]
+MIN1["Silicon / Quartz Miners (China, US, Germany)"]
+MIN2["Silver, Copper, Aluminium Producers (Mexico, Chile, Peru, Australia)"]
+MIN3["Glass, EVA, Backsheet Chemical Producers"]
+end
+
+%% Material flows to polysilicon producers
+MIN1 -->|Silicon Ore| POLY
+MIN2 -->|Critical Minerals| CELLS
+MIN3 -->|Materials & Chemicals| MODS
+
+%% ==========================================================
+%% TIER-1 MANUFACTURING & PROCESSING
+%% ==========================================================
+
+subgraph MFG[Tier-1 Solar Manufacturing Chain]
+POLY["Polysilicon Producers China ~80% share; Malaysia; US; Germany"]
+
+ING["Ingot Producers Primarily China"]
+WAF["Wafer Producers China, Vietnam, Malaysia"]
+
+CELLS["Cell Manufacturers China, Taiwan, South Korea"]
+MODS["Module Assembly Plants China, Malaysia, Vietnam, Thailand; US, Germany, India"]
+
+end
+
+%% Upstream manufacturing flows
+POLY --> ING --> WAF --> CELLS --> MODS
+
+%% ==========================================================
+%% GLOBAL OEMs / BRANDS SUPPLYING THE UK
+%% ==========================================================
+
+subgraph OEMs[Global Solar Panel Manufacturers]
+CH1["JinkoSolar (China)"]
+CH2["Trina Solar (China)"]
+CH3["LONGi (China)"]
+CH4["Tongwei Solar (TW-Solar)"]
+CH5["JA Solar"]
+
+US1["First Solar (US)"]
+US2["Qcells US"]
+US3["Silfab / SunPower"]
+
+EU1["Germany: SolarWorld / SunPower"]
+KR1["Hanwha Q-Cells Korea"]
+
+JP1["Panasonic / Sharp / Kyocera"]
+IN1["Vikram / Adani / Tata Solar"]
+
+end
+
+MODS -->|Finished Modules| CH1
+MODS --> CH2
+MODS --> CH3
+MODS --> US1
+MODS --> EU1
+MODS --> KR1
+MODS --> JP1
+MODS --> IN1
+
+%% ==========================================================
+%% INTERNATIONAL LOGISTICS TO THE UK
+%% ==========================================================
+
+subgraph INTL[International Freight & Border]
+EXP["Export Port (Asia/US/EU)"]
+SHIP["Ocean Freight / Carriers"]
+UKPORT["UK Import Port (e.g., Felixstowe, Southampton)"]
+CUST["Customs & Regulatory Checks"]
+end
+
+CH1 --> EXP
+CH2 --> EXP
+CH3 --> EXP
+US1 --> EXP
+EU1 --> EXP
+KR1 --> EXP
+JP1 --> EXP
+IN1 --> EXP
+
+EXP --> SHIP --> UKPORT --> CUST
+
+%% ==========================================================
+%% UK MARKET SUPPLY CHAIN
+%% ==========================================================
+
+subgraph UKSCM[UK Solar Supply Chain]
+IMP["UK Importers / Wholesalers"]
+DIST["UK Distributors"]
+EPC["EPC Firms & Installers"]
+RET["Retailers & Residential Providers"]
+END["End Users Residential, C&I, Utility-Scale"]
+end
+
+CUST --> IMP --> DIST --> EPC --> RET --> END
+
+%% ==========================================================
+%% INFORMATION, PLANNING & DIGITAL FLOWS
+%% ==========================================================
+
+subgraph PLAN[Planning, Forecasting & Coordination]
+DEMF["UK Demand Forecasting (Govt Targets 45–47 GW by 2030)"]
+SCPLAN["Supply Chain Planning (MRP / Capacity / Inventory)"]
+RISKM["Risk Management (Multi-sourcing, Buffer Inventory)"]
+DIGI["Digitalisation (ERP, IoT Tracking, Traceability)"]
+end
+
+DEMF --- IMP
+SCPLAN --- MFG
+SCPLAN --- IMP
+RISKM --- OEMs
+DIGI --- MODS
+DIGI --- IMP
+DIGI --- DIST
+
+%% ==========================================================
+%% SUSTAINABILITY & GOVERNANCE
+%% ==========================================================
+
+subgraph SUS[Sustainability, Ethics & Compliance]
+SDG7["SDG 7: Clean Energy"]
+SDG12["SDG 12: Responsible Consumption"]
+ETH["Ethical Auditing (Modern Slavery Act)"]
+REC["Recycling / Circular Economy (Glass, Silicon Recovery)"]
+end
+
+ETH --- POLY
+ETH --- OEMs
+REC --- UKSCM
+SDG7 --- PLAN
+SDG12 --- PLAN
+
+%% Additional flows for clarity
+SHIP --- RISKM
+CUST --- ETH
+IMP --- SCPLAN
+
+```
