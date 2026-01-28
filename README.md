@@ -1,29 +1,193 @@
 # UoN-Business-Analytics
 
-This directory contains course materials for a Business Analytics program, likely from the University of Nottingham. The materials are organized into three main modules: Data and Society (D@S), Foundational Business Analytics (FBA), and Supply-Chain planning and management.
+This directory contains comprehensive course materials for a Business Analytics program from the University of Nottingham. The materials are organized into three main modules with a focus on practical, hands-on learning through Jupyter notebooks and real-world datasets.
 
-## Directory Overview
+## 📚 Directory Overview
 
-- **`D@S/`**: This directory appears to hold materials for a "Data at Scale" course. It includes Jupyter notebooks (`.ipynb`), data files, and lecture slides (`.pdf`). The content seems to focus on data cleaning, working with web APIs, and SQL.
+### **D@S/** - Data at Scale
 
-- **`FBA/`**: This directory contains materials for a "Foundational Business Analytics" course. It is rich with Jupyter notebooks for weekly practice sessions, various datasets in `.csv` format, and a dedicated `coursework` sub-directory. The focus here is on hands-on data analysis using Python.
+A course focusing on large-scale data processing and web integration:
 
-- **`Supply-Chain-planning-and-management/`**: This directory contains materials related to business process modeling, specifically focusing on supply chain management. It includes several flowchart diagrams and related markdown files.
+- Jupyter notebooks for data cleaning and API integration
+- Web API practical exercises
+- SQL-based data querying
+- Lecture slides (PDF format)
+- Real shopping receipt datasets for analysis
 
-## Key Files
+### **FBA/** - Foundational Business Analytics
 
-- **`FBA/FBA_Week_01_Intro_&_Python_Practice.ipynb`**: An introductory Jupyter notebook for the FBA course. It covers Python basics, including mathematical operations, strings, variables, data types, and conditional statements, all within the context of a business case study.
+The core analytics course with extensive Python practice:
 
-- **`FBA/coursework/main.ipynb`**: The main Jupyter notebook for the FBA coursework. This is likely where the main analysis for the course is performed.
+- **Weekly Practice Notebooks** (`FBA_Week_01_*` through `FBA_Week_10_*`): Progressive Python and data analysis skills
+- **Assessment Materials**: Python test notebooks (2023, 2025)
+- **Datasets**: Multiple CSV files including admissions, credit card history, breast cancer, drinks data
+- **Coursework Directory**: Advanced machine learning classification projects with detailed documentation
+- **Key Notebook**: `balance.ipynb` - Financial data analysis and categorization
 
-- **`D@S/shopping_data_small/main.ipynb`**: A Jupyter notebook in the D@S module that likely deals with analyzing the provided "shopping_data_small" dataset.
+### **Supply-Chain-planning-and-management/**
 
-- **`Supply-Chain-planning-and-management/flowchart-1.md`**: A markdown file containing a flowchart, likely related to supply chain planning.
+Business process modeling with focus on supply chain optimization:
 
-## Usage
+- Detailed flowcharts (Mermaid diagrams) showing supply chain workflows
+- Solar panel manufacturing supply chain analysis
+- Policy frameworks and compliance structures
+- Lecture materials and exam preparation resources
 
-This directory is a collection of educational materials. The primary way to interact with the content is by:
+## 📁 Key Files & Their Purpose
 
-- **Running the Jupyter notebooks**: The `.ipynb` files can be opened and run using a Jupyter environment (like Jupyter Lab or Google Colab) to follow the course exercises and analyses.
-- **Reviewing the lecture slides**: The `.pdf` files in the `D@S` directory are likely lecture slides that provide theoretical context for the practical exercises.
-- **Examining the data**: The `.csv` files can be explored to understand the datasets used in the courses.
+| File                                                  | Purpose                                                                |
+| ----------------------------------------------------- | ---------------------------------------------------------------------- |
+| `FBA/FBA_Week_01_Intro_&_Python_Practice.ipynb`       | Python fundamentals, variables, data types, conditionals               |
+| `FBA/FBA_Week_07_Python_Practice.ipynb`               | Pandas, NumPy, correlation analysis, data manipulation                 |
+| `FBA/FBA_Week_10_Python_Practice.ipynb`               | Machine learning models, cross-validation, classification              |
+| `FBA/coursework/main.ipynb`                           | Advanced ML classification with feature engineering & model evaluation |
+| `FBA/coursework/explain.md`                           | Comprehensive documentation of ML notebook structure                   |
+| `FBA/balance.ipynb`                                   | Financial transaction analysis and expense categorization              |
+| `FBA/admissions.csv`                                  | University admissions dataset (GRE, GPA, ranking)                      |
+| `FBA/credit_card_history.csv`                         | Credit card default prediction dataset                                 |
+| `Supply-Chain-planning-and-management/flowchart-3.md` | Comprehensive solar supply chain with policy & risk layers             |
+
+## 🛠️ Technologies & Libraries
+
+The coursework utilizes:
+
+- **Data Processing**: Pandas, NumPy
+- **Visualization**: Matplotlib, Seaborn
+- **Machine Learning**: Scikit-learn (classification, pipelines, cross-validation)
+- **Model Persistence**: Joblib
+- **Notebook Environment**: Jupyter/Google Colab
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+```
+
+### Running Notebooks
+
+1. **Using Jupyter Lab:**
+
+```bash
+jupyter lab
+```
+
+2. **Using Google Colab:**
+   - Upload `.ipynb` files to Google Colab
+   - Or open directly: `colab.research.google.com`
+
+3. **Local Python:**
+
+```bash
+python -m jupyter notebook
+```
+
+## 📊 Course Progression
+
+### Week 1-6: Foundations
+
+- Python basics and syntax
+- Data types and control flow
+- Introduction to Pandas and NumPy
+- Data exploration and visualization
+
+### Week 7-8: Data Analysis & Testing
+
+- Correlation analysis and statistical measures
+- CSV file handling
+- Practical assessment (Python tests)
+
+### Week 10: Machine Learning
+
+- Classification algorithms (Logistic Regression, Decision Trees)
+- Cross-validation and model evaluation
+- Feature importance and interpretation
+- Handling class imbalance
+
+### Coursework: Advanced ML Project
+
+- Complete pipeline from data loading to model deployment
+- Feature engineering and preprocessing
+- Comprehensive model comparison
+- Business-focused metrics (F1-score, precision, recall, ROC)
+
+## 📈 Dataset Summary
+
+| Dataset                   | Rows   | Columns | Purpose                                           |
+| ------------------------- | ------ | ------- | ------------------------------------------------- |
+| `admissions.csv`          | 400+   | 4       | Predict university admissions (GRE, GPA, ranking) |
+| `credit_card_history.csv` | 30,000 | 24      | Credit card default prediction                    |
+| `breast_cancer_b.csv`     | -      | -       | Binary classification practice                    |
+| `drinks.csv`              | -      | -       | Exploratory data analysis                         |
+| `balance.csv`             | -      | -       | Personal finance analysis                         |
+
+## 🔗 Project Highlights
+
+### **FBA Coursework - ML Classification**
+
+A production-ready machine learning pipeline featuring:
+
+- Automated feature typing (numeric vs categorical)
+- Preprocessing pipelines with column transformers
+- Multiple model architectures (Logistic Regression, Random Forest, Gradient Boosting, SVM)
+- Stratified cross-validation for imbalanced data
+- Comprehensive evaluation metrics and profit analysis
+- Model serialization for deployment
+
+### **Supply Chain Optimization**
+
+Detailed analysis of solar panel supply chain:
+
+- 17-year mining lead times
+- Global manufacturing concentration (94% in Asia)
+- Risk mitigation strategies
+- UK domestic manufacturing alternatives
+- Policy alignment with Net Zero 2050 targets
+
+## 📖 Usage Guide
+
+### For Students
+
+1. Start with `FBA/FBA_Week_01_*` notebooks sequentially
+2. Practice with provided datasets
+3. Reference `coursework/explain.md` for advanced concepts
+4. Complete assessment notebooks for self-evaluation
+
+### For Instructors
+
+- All materials are self-contained and modular
+- Datasets are included for reproducibility
+- Markdown documentation provides context
+- Assessment notebooks provide grading templates
+
+### For Analysis
+
+- Clone or download the repository
+- Open notebooks in Jupyter environment
+- Data files are relative-pathed for portability
+- All dependencies are standard Python packages
+
+## ⚙️ Configuration
+
+- **Python Version**: 3.14.x (as specified in notebooks)
+- **Notebook Format**: Jupyter Notebook (.ipynb)
+- **Data Format**: CSV for tabular data
+- **Documentation**: Markdown (.md)
+
+## 📝 Notes
+
+- All notebooks are self-contained and can run independently
+- Data paths may need adjustment based on your local setup
+- CSV files should be in the same directory as referenced notebooks
+- Google Colab users should upload datasets before running cells
+
+## 🔐 License
+
+MIT License - See [LICENSE](LICENSE) file for details.
+
+---
+
+**Last Updated**: 2025
+**Course Institution**: University of Nottingham
+**Program**: Business Analytics (Foundational & Advanced)
