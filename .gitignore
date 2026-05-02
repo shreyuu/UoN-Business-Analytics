@@ -28,3 +28,7 @@ sparkenv/
 *.swn
 chatgpt/
 !Analytics-Specializations-and-Applications/coursework-1/final/ASA_BUSI4370_20811152 /customer_segments_ASA_BUSI4370_20811152.csv
+*.pdf
+*.docx
+*.xlsx
+*.pptx
