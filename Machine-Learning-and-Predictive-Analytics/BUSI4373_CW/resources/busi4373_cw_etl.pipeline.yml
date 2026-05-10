@@ -1,0 +1,20 @@
+# The main pipeline for busi4373_cw
+
+resources:
+  pipelines:
+    busi4373_cw_etl:
+      name: busi4373_cw_etl
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      root_path: "../src/busi4373_cw_etl"
+
+      libraries:
+        - glob:
+            include: ../src/busi4373_cw_etl/transformations/**
+
+      environment:
+        dependencies:
+          # We include every dependency defined by pyproject.toml by defining an editable environment
+          # that points to the folder where pyproject.toml is deployed.
+          - --editable ${workspace.file_path}
