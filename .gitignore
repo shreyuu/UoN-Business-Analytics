@@ -6,6 +6,7 @@ __pycache__/
 .DS_Store
 .idea/*.pkl
 *.db
+*.pkl
 *.mp4
 sparkenv/
 *.tsv
