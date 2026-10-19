@@ -1,0 +1,58 @@
+# Re-executes the two submitted dissertation notebooks. Each contains a canonical verification
+# cell that asserts the reported results, so the job fails if any of those numbers change.
+name: Dissertation notebooks
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "Dissertation/**"
+      - ".github/workflows/dissertation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    # The canonical values were produced on macOS. Forest-derived values differ on Linux,
+    # see "A note on platform reproducibility" in Dissertation/final submission/final_submission_audit.md.
+    runs-on: macos-latest
+    timeout-minutes: 45  # both notebooks take about 6 minutes on an Apple-silicon Mac
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: Dissertation/.python-version
+          cache: pip
+          cache-dependency-path: Dissertation/requirements.txt
+
+      - name: Install pinned dependencies
+        run: pip install -r Dissertation/requirements.txt nbconvert
+
+      - name: Fetch the rotating-hyperplane benchmark
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/vlosing/driftDatasets.git Dissertation/driftDatasets
+          git -C Dissertation/driftDatasets sparse-checkout set artificial/hyperplane
+
+      - name: Execute the main notebook
+        run: >
+          jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=-1
+          "Dissertation/final submission/20811152_BUSI4374_2526/20811152_BUSI4374_2526_main.ipynb"
+          --output-dir "$RUNNER_TEMP/executed"
+
+      - name: Execute the XOR harness notebook
+        run: >
+          jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=-1
+          "Dissertation/final submission/20811152_BUSI4374_2526/20811152_BUSI4374_2526_XOR.ipynb"
+          --output-dir "$RUNNER_TEMP/executed"
+
+      - name: Upload executed notebooks and figures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dissertation-run
+          path: |
+            ${{ runner.temp }}/executed
+            Dissertation/final submission/figures
+          if-no-files-found: ignore

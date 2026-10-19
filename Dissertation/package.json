@@ -1,0 +1,22 @@
+{
+  "name": "dissertation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync:notion": "node scripts/sync-notion-plan.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@notionhq/client": "^5.22.0",
+    "dotenv": "^17.4.2",
+    "notion-to-md": "^3.1.9"
+  }
+}

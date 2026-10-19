@@ -4,36 +4,45 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository purpose
 
-University of Nottingham Business Analytics MSc coursework. Not a software project — a collection of Jupyter notebooks, datasets, and PDFs organised per module. Treat each top-level directory as an independent workspace; there are no shared utilities, package manifests, or build steps spanning modules.
+University of Nottingham MSc Business Analytics coursework (2025/26). Not a software project: Jupyter notebooks, datasets, figures and submitted artefacts organised per module. Treat each top-level directory as an independent workspace; no code is shared between modules. `README.md` is the human-facing overview.
 
 ## Top-level modules
 
-- `FBA/` — Foundational Business Analytics (BUSI4371). Weekly practice notebooks (`FBA_Week_01_*` … `FBA_Week_10_*`, with two Week 08 test variants `FBA_Week_08_Python_Test_2023/2025`), `balance.ipynb` (personal finance), and `coursework/` (final ML classification submission `20811152_BUSI4371_2526.ipynb` with serialised `.joblib` / `.pkl` pipelines). CSVs live alongside notebooks; paths in cells are relative.
-- `Machine-Learning-and-Predictive-Analytics/` — BUSI4373. Weekly practicals with inconsistent naming: `week-1/` (hyphenated) then `Week 2 - …` … `Week 11 - …` (spaces, descriptive titles). Submitted coursework is in `cousework/` (note: directory is misspelled — keep the spelling) with `main.ipynb` operating on a multi-table retail dataset (`customers.csv`, `products.csv`, `receipts.csv`, `receipt_lines.csv`, `stores.csv`); a separate Databricks variant lives in `BUSI4373_CW/` and `BUSI4373_CW_databricks/`. Exam prep is scattered across `exam/`, `ML_NOTES/`, `Claude_ML_Cram_Sheet.md`, `Claude_ML_Exam_Notes.md`, and `BUSI4373_ML_Exam_Detailed_Notes_*.docx`.
-- `Analytics-Specializations-and-Applications/` — two pieces of coursework:
-  - `BUSI4370_CW1/` — customer segmentation (clustering); multiple iterations exist (`final_01.ipynb`, `final_02.ipynb`, `Customer_Segmentation_Technical_Notebook.ipynb`). The final submission lives under `final/`.
-  - `BUSI4370_CW2/` — multi-stage social-media analytics pipeline. Notebooks under `notebooks/` are numbered and run in order: `01_data_collection` → `02_data_cleaning` → `03_analysis` → `04_sentiment` → `05_topics_keywords` → `06_network_influencer` → `07_perceptual_map`. Outputs (figures, intermediate CSVs) land in `outputs/`. This is the only module with a pinned `requirements.txt`.
-- `D@S/` — Data at Scale. Databricks/SQL-flavoured notebooks (`shopping_data_small/`, `sql-test-2/`, `coursework/`) plus an exported Databricks HTML.
-- `Supply-Chain-planning-and-management/` — non-code module: Mermaid flowcharts (`flowchart-1.md` … `flowchart-3.md`) and lecture PDFs.
-- `Leading-Big-Data-Business-Projects/` — BUSI4372. Non-code group project deliverables only: individual report PDF (`20811152_BUSI4372_*`), group presentation (`.pptx`), recorded presentation (`.mp4`), and minutes of meeting (`.pdf`).
-- `fractal/` — loose scratch directory (`main.py`), unrelated to any module; not coursework.
+- `Dissertation/` — BUSI4374 feature-drift study. Submitted notebooks (`*_main.ipynb` rotating-hyperplane benchmark, `*_XOR.ipynb` Boolean harness) are in `Dissertation/final submission/20811152_BUSI4374_2526/`, with a copy under `docs/latest_draft/files/final submission/`. Working notebooks are in `scripts/`, figures in `figures/`. Data: clone `vlosing/driftDatasets` into `Dissertation/driftDatasets/` (gitignored); the notebooks search parent folders for it and write figures to `../figures`.
+- `FBA/` — BUSI4371. Weekly practice notebooks (weeks 1 and 6–10, two Week 08 tests), `balance.ipynb`, and `coursework/` (submission `20811152_BUSI4371_2526.ipynb`). `20811152_BUSI4371_2526.joblib` is the selected Decision Tree; `*_final_model.joblib` and `final_model.joblib` are Gaussian Naive Bayes; all were saved with scikit-learn 1.7.2. The `.pkl` pipelines exist only locally.
+- `Machine-Learning-and-Predictive-Analytics/` — BUSI4373. The submission is `BUSI4373_CW/BUSI4373_20811152_2526.ipynb` (Databricks export; needs the course workspace `workspace.ml34`). `cousework/main.ipynb` is an empty stub (keep the misspelt folder). `BUSI4373_CW_databricks/` is the unmodified `default-python` bundle template. Weekly `Week N - …/` folders and `exam/` are gitignored; tracked practicals are in `other/`.
+- `Analytics-Specializations-and-Applications/` — BUSI4370:
+  - `BUSI4370_CW1/` — customer segmentation. Final: `final/ASA_BUSI4370_20811152 /` (five segments, RobustScaler); `main.py` is an earlier script (k = 6). Iteration notebooks coexist intentionally.
+  - `BUSI4370_CW2/` — Bluesky brand-analytics pipeline; run `notebooks/01_…` to `07_…` in order. Only `outputs/figures/` is committed; `data/` and `outputs/tables/` are regenerated.
+- `D@S/` — BUSI4369 Data at Scale: Databricks/SQL coursework, Tableau workbook, session PDFs.
+- `Supply-Chain-planning-and-management/` — BUSI4496: Mermaid flowcharts and lecture PDFs.
+- `Leading-Big-Data-Business-Projects/` — BUSI4372: group report, slides, recording, minutes.
+- `Advanced-Operations-Analysis/` — BUSI4498, local only (PDF/DOCX, entirely gitignored).
+- `fractal/` — scratch `main.py`, not coursework.
 
 ## Environment
 
-- Single shared `.venv/` at the repo root, Python **3.14.0** (Homebrew). Activate with `source .venv/bin/activate` before running notebooks or scripts.
-- Only `BUSI4370_CW2` has a pinned dependency set (`Analytics-Specializations-and-Applications/BUSI4370_CW2/requirements.txt`) — install with `pip install -r Analytics-Specializations-and-Applications/BUSI4370_CW2/requirements.txt` when touching that pipeline. Notable pins: `pandas==3.0.2`, `numpy==2.4.4`, `scikit-learn==1.8.0`, plus NLP-specific deps (`gensim` from a git SHA, `nltk`, `textblob`, `vaderSentiment`, `pyLDAvis`, `wordcloud`, `atproto` for Bluesky data collection).
-- Other modules rely on the ambient venv — install ad-hoc as needed (`pandas numpy matplotlib seaborn scikit-learn jupyter`).
-- Run notebooks via `jupyter lab` or `jupyter notebook`; many were originally authored in Google Colab so cells may reference `/content/` paths that need adjusting.
+- Separate venvs: root `.venv` (Python 3.14, general coursework), `Analytics-Specializations-and-Applications/BUSI4370_CW2/.venv` (3.14; its `requirements.txt` is an exact freeze without Jupyter), and `Dissertation/.venv` (3.12, pinned by `Dissertation/requirements.txt`; has no pip).
+- The root `.venv` was moved from another path, so its `pip`/`jupyter` scripts have dead shebangs: use `.venv/bin/python3.14 -m pip` or `-m jupyter`, or recreate it.
+- Run a notebook without modifying it: `jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=-1 "<notebook>" --output-dir /tmp/<dir>`.
+- Many notebooks came from Google Colab or Databricks: `/content/` paths, `spark` and `%sql` cells won't run locally.
+
+## Verification
+
+- The dissertation notebooks contain canonical verification cells (asserts on the reported numbers); executing them is the regression test. CI: `.github/workflows/dissertation.yml` on a macOS runner, because forest-derived values differ on Linux (see `final_submission_audit.md`).
+- There are no other tests, linters or CI.
 
 ## Working with notebooks
 
-- Datasets are colocated with the notebooks that use them; relative paths are the convention. Don't refactor paths to be absolute — keep notebooks portable.
-- The `.gitignore` excludes most data formats wholesale (`*.csv`, `*.zip`, `*.pdf`, `*.xlsx`, `*.html`, `*.json`, …). One explicit allow-list exists for `Analytics-Specializations-and-Applications/coursework-1/final/ASA_BUSI4370_20811152 /customer_segments_ASA_BUSI4370_20811152.csv` (note the trailing space in the directory name — preserve it). Before adding any data file, check it isn't ignored, and don't `git add -f` ignored artefacts unless the user asks.
-- PDFs are ignored wholesale, with one tracked exception: `.gitattributes` routes a single committed file — `Machine-Learning-and-Predictive-Analytics/ML_NOTES/ML_NOTES.pdf` — through **Git LFS**, and LFS is deliberately scoped to just that path. Don't broaden the LFS filter or commit other large PDFs as regular blobs.
-- Coursework notebooks are submitted artefacts — preserve student-id-prefixed filenames (`20811152_*`) verbatim; don't rename or "clean up". Multiple iteration files (e.g. `final_01.ipynb`, `final_02.ipynb`, `main01.ipynb`) coexist intentionally; ask before consolidating.
-- Trained model artefacts (`*.joblib`, `*.pkl`) are committed in `FBA/coursework/`. Treat them as the deliverable — re-train only when explicitly asked, and preserve the existing files.
+- Datasets sit next to the notebooks that use them; keep paths relative.
+- `.gitignore` excludes most data and document formats (`*.csv`, `*.json`, `*.zip`, `*.pdf`, `*.docx`, `*.xlsx`, `*.pptx`, `*.pkl`, `*.html`) and re-includes specific submitted files with `!` lines. Run `git check-ignore -v <path>` before adding files; don't `git add -f` unless asked.
+- Git LFS covers only `Machine-Learning-and-Predictive-Analytics/ML_NOTES/ML_NOTES.pdf`; don't broaden it.
+- Submitted artefacts keep their `20811152_*` names and contents: document problems in the module README instead of editing graded notebooks, and don't re-train models unless asked.
+- Quote paths with spaces or trailing spaces: `Dissertation/final submission/`, `ASA_BUSI4370_20811152 /`, `BUSI4370_CW2/final-submission /`.
+- Never hardcode credentials. Bluesky logins use `input()`/`getpass()`; the Notion sync helper reads `Dissertation/.env` (template: `Dissertation/.env.example`).
+- Rewriting a notebook with `json.dump(nb, indent=1, ensure_ascii=False)` keeps the diff small only if the file round-trips byte-identically; otherwise edit its lines in place.
 
 ## Conventions
 
-- The repo also contains a `GEMINI.md` describing the same workspace for a different assistant; it predates several modules (no mention of `Machine-Learning-and-Predictive-Analytics` or `Analytics-Specializations-and-Applications`). Prefer this file and the README for current structure.
-- `README.md` lists Python 3.14.x as the target — match that when writing new code.
+- `AGENTS.md` mirrors this file for Codex; keep them in sync. `GEMINI.md` is older and incomplete.
+- Target Python 3.14 for new coursework code, and 3.12 inside `Dissertation/`.

@@ -34,7 +34,6 @@ The project includes:
 
 ```text
 .
-├── .gitignore
 ├── 20811152_BUSI4371_2526_final_model.joblib
 ├── 20811152_BUSI4371_2526.ipynb
 ├── 20811152_BUSI4371_2526.joblib
@@ -49,13 +48,13 @@ The project includes:
 ├── explain.md
 ├── FBA Coursework 25-26.pdf
 ├── final_model.joblib
-├── final_pipeline_calibrated.pkl
-├── final_pipeline.pkl
 ├── gemini-explained.md
 ├── main01.ipynb
 ├── model_metrics_summary.csv
 └── Rohit_cwk_data_20793079.csv
 ```
+
+`final_pipeline.pkl` and `final_pipeline_calibrated.pkl` are also produced locally, but the root `.gitignore` excludes `*.pkl`, so they aren't in the repository.
 
 ## Files Description
 
@@ -70,13 +69,11 @@ The project includes:
 | `FBA Coursework 25-26.pdf`                                          | Coursework specification document.                                             |
 | `BUSI4371 Foundational Business Analytics marking rubric - CW.xlsx` | Marking rubric for the coursework.                                             |
 | `decision_tree_viz.png`                                             | Visualisation of the decision tree model.                                      |
-| `model_metrics_summary.csv`                                         | Summary of model evaluation metrics.                                           |
-| `final_model.joblib`                                                | Saved final machine learning model.                                            |
-| `20811152_BUSI4371_2526_final_model.joblib`                         | Submitted version of the final saved model.                                    |
-| `20811152_BUSI4371_2526.joblib`                                     | Additional exported model file.                                                |
-| `final_pipeline.pkl`                                                | Saved machine learning pipeline.                                               |
-| `final_pipeline_calibrated.pkl`                                     | Calibrated version of the saved machine learning pipeline.                     |
-| `explain.md`                                                        | Explanation notes for the modelling workflow.                                  |
+| `model_metrics_summary.csv`                                         | Metrics from `main01.ipynb`, where Random Forest led on F1. The submitted notebook compares more models and selects a Decision Tree on F0.5. |
+| `20811152_BUSI4371_2526.joblib`                                     | The selected Decision Tree pipeline (scaling, one-hot encoding, `DecisionTreeClassifier(max_depth=5, min_samples_leaf=50)`), saved by Section E of the submitted notebook. |
+| `20811152_BUSI4371_2526_final_model.joblib`                         | A Gaussian Naive Bayes pipeline from an earlier run. `predict_new()` loads it by default; see [Known issue](#known-issue). |
+| `final_model.joblib`                                                | Another Gaussian Naive Bayes pipeline from an earlier run.                     |
+| `explain.md`                                                        | Explanation notes for the `main01.ipynb` workflow (three models, selected on F1). |
 | `gemini-explained.md`                                               | Additional model or project explanation notes.                                 |
 | `draft.docx`                                                        | Draft version of the written coursework.                                       |
 | `20811152_BUSI4371_2526.zip`                                        | Packaged coursework submission archive.                                        |
@@ -146,32 +143,40 @@ The project produces:
 
 ## How to Run
 
-1. Clone this repository:
+1. Clone the repository and move into this folder:
 
    ```bash
-   git clone https://github.com/your-username/foundational-business-analytics-ml.git
-   cd foundational-business-analytics-ml
+   git clone https://github.com/shreyuu/UoN-Business-Analytics.git
+   cd UoN-Business-Analytics/FBA/coursework
    ```
 
-2. Install the required Python libraries:
+2. Install the required Python libraries. scikit-learn is pinned to 1.7.2, the version the `.joblib` files were saved with:
 
    ```bash
-   pip install pandas numpy scikit-learn matplotlib joblib
+   pip install scikit-learn==1.7.2 pandas numpy matplotlib jupyterlab
    ```
 
 3. Open the main notebook:
 
    ```bash
-   jupyter notebook 20811152_BUSI4371_2526.ipynb
+   jupyter lab 20811152_BUSI4371_2526.ipynb
    ```
 
-4. Run the notebook cells from top to bottom.
+4. Run the notebook cells from top to bottom. This retrains the models and overwrites `20811152_BUSI4371_2526.joblib`.
 
 5. Review the generated metrics, model files, and visualisations.
 
+## Known issue
+
+The submitted notebook is kept as submitted, including one inconsistency. Section D selects a Decision Tree and Section E saves it as `20811152_BUSI4371_2526.joblib`, but `predict_new()` defaults to `20811152_BUSI4371_2526_final_model.joblib`, which holds a Gaussian Naive Bayes pipeline. The sample predictions at the end of Section E therefore come from Naive Bayes. To score with the selected Decision Tree, pass its file explicitly:
+
+```python
+result = predict_new("cwk_data_20796894-paras.csv", model_path="20811152_BUSI4371_2526.joblib")
+```
+
 ## Notes
 
-- Large generated files such as `.joblib`, `.pkl`, `.zip`, and `.db` files may be excluded from GitHub depending on repository size and submission requirements.
+- The `.joblib` model files and the submission `.zip` are committed; `.pkl` and `.db` files are excluded by the root `.gitignore`.
 - The coursework dataset and academic files are included for reproducibility within the coursework context.
 - This repository is intended for educational and portfolio demonstration purposes.
 

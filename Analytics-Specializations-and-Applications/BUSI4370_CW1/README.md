@@ -19,7 +19,7 @@ Currency columns are stored as `£`-prefixed strings and must be parsed before n
 
 ## Pipeline
 
-`main.py` is the canonical end-to-end script:
+`main.py` is an earlier end-to-end script, kept for reference. The submitted analysis differs from it (see [Final submission](#final-submission)):
 
 1. Load + parse currency, timestamps.
 2. Recompute bakery spend from line items.
@@ -32,6 +32,10 @@ Currency columns are stored as `£`-prefixed strings and must be parsed before n
 9. Export `cluster_summary.csv` and `customer_segments.csv` (`customer_number, segment_id`).
 
 `RANDOM_STATE = 42` throughout for reproducibility.
+
+## Final submission
+
+The submitted notebook in `final/ASA_BUSI4370_20811152 /` refines this pipeline. It winsorises and log-transforms the features, scales them with `RobustScaler`, reduces them with PCA, compares K-means for k = 5–7 and settles on five segments, checking their stability with the Adjusted Rand Index. The segments hold 1,824, 716, 244, 179 and 37 of the 3,000 customers.
 
 ## Notebooks
 
@@ -51,7 +55,7 @@ cd Analytics-Specializations-and-Applications/BUSI4370_CW1
 python main.py
 ```
 
-The script reads the sample CSVs from the working directory and writes plots and CSVs alongside them. For the notebooks, launch `jupyter lab` and open the file directly.
+The script reads the sample CSVs from the working directory and writes plots and CSVs alongside them. The sample CSVs are course data and aren't committed (the root `.gitignore` excludes `*.csv`), so copy them into this folder first. For the notebooks, launch `jupyter lab` and open the file directly.
 
 ## Deliverables (per brief)
 

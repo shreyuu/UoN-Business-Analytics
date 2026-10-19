@@ -147,6 +147,8 @@ The workflow is split into multiple notebooks, with each notebook handling a spe
 └── requirements.txt
 ```
 
+`data/`, `outputs/tables/` and `report/` aren't in the repository. The root `.gitignore` excludes CSV and JSON files, so the notebooks regenerate `data/` and `outputs/tables/`, while `report/` stays local.
+
 ## Folder Description
 
 | Folder             | Description                                                                                            |
@@ -237,11 +239,11 @@ The project also produces structured outputs such as:
 
 ## How to Run
 
-1. Clone the repository:
+1. Clone the repository and move into this project:
 
    ```bash
-   git clone https://github.com/your-username/bluesky-brand-intelligence.git
-   cd bluesky-brand-intelligence
+   git clone https://github.com/shreyuu/UoN-Business-Analytics.git
+   cd UoN-Business-Analytics/Analytics-Specializations-and-Applications/BUSI4370_CW2
    ```
 
 2. Create and activate a virtual environment:
@@ -251,13 +253,13 @@ The project also produces structured outputs such as:
    source .venv/bin/activate
    ```
 
-3. Install dependencies:
+3. Install dependencies. `requirements.txt` is the exact environment used for the analysis and doesn't include Jupyter, so add it:
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements.txt jupyterlab
    ```
 
-4. Run the notebooks in order:
+4. Run the notebooks in order. Notebook 01 prompts for a Bluesky handle and app password:
 
    ```text
    notebooks/01_data_collection.ipynb
@@ -288,7 +290,7 @@ This name is short, unique, portfolio-friendly, and broad enough to cover the fu
 ## Notes
 
 - `.DS_Store` files are local macOS files and should be ignored using `.gitignore`.
-- Raw and processed datasets are included for reproducibility.
+- Raw and processed datasets are regenerated locally rather than committed. Re-collecting from the live Bluesky API returns a different sample from the one behind the committed figures.
 - The project is structured as a coursework analytics pipeline and can also be presented as a social listening / brand intelligence portfolio project.
 
 ## Author
