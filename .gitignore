@@ -28,7 +28,7 @@ sparkenv/
 *.swo
 *.swn
 chatgpt/
-!Analytics-Specializations-and-Applications/coursework-1/final/ASA_BUSI4370_20811152 /customer_segments_ASA_BUSI4370_20811152.csv
+!Analytics-Specializations-and-Applications/BUSI4370_CW1/final/ASA_BUSI4370_20811152 /customer_segments_ASA_BUSI4370_20811152.csv
 *.pdf
 *.docx
 *.xlsx
@@ -45,21 +45,14 @@ Machine-Learning-and-Predictive-Analytics/week-1/ML_ Practical 1.pdf
 Machine-Learning-and-Predictive-Analytics/Week 11 - Foundation Models and more, plus revision/Prac_Causal_Inference_part_1_\[Solution].ipynb
 Machine-Learning-and-Predictive-Analytics/Week 11 - Foundation Models and more, plus revision/Prac_Causal_Inference_part_2_\[Solution].ipynb
 Machine-Learning-and-Predictive-Analytics/Week 3 - Optimality and unbalanced class problem. Plus SVMs./Prac_Unbalanced_Classes.ipynb
-.gitignore
 Machine-Learning-and-Predictive-Analytics/Week 4 - Model evaluation and comparison. Plus time series and A:B testing/Evaluation_\[Solution_Part_B_GridSearchCV].ipynb
 Machine-Learning-and-Predictive-Analytics/Week 4 - Model evaluation and comparison. Plus time series and A:B testing/Prac_Evaluation_\[Solution_Part_A].ipynb
-.gitignore
 Machine-Learning-and-Predictive-Analytics/Week 4 - Model evaluation and comparison. Plus time series and A:B testing/Prac_Evaluation_\[Solution_Part_B].ipynb
-.gitignore
 Machine-Learning-and-Predictive-Analytics/Week 4 - Model evaluation and comparison. Plus time series and A:B testing/Prac_Evaluation_\[Solution_Part_C].ipynb
-.gitignore
 Machine-Learning-and-Predictive-Analytics/Week 7 - Model understanding. Plus End-to-end ML Part 1./Demo_Model_Understanding_v2.ipynb
-.gitignore
 Machine-Learning-and-Predictive-Analytics/Week 7 - Model understanding. Plus End-to-end ML Part 1./Practical_7_(sklearn_version)_Variable_Importance_&_Feature_Selection_\[Soln].ipynb
 Machine-Learning-and-Predictive-Analytics/Week 8 - End-to-end ML Part 2./End2end \[solution].ipynb
-.gitignore
 Machine-Learning-and-Predictive-Analytics/Week 8 - End-to-end ML Part 2./New Notebook 2026-03-13 14_21_58.ipynb
-.gitignore
 Machine-Learning-and-Predictive-Analytics/Week 9 - Neural Networks/Neural Nets Prac \[soln].ipynb
 Machine-Learning-and-Predictive-Analytics/Week 9 - Neural Networks/Neural Nets Prac.ipynb
 !Machine-Learning-and-Predictive-Analytics/ML_NOTES/ML_NOTES.pdf
@@ -83,3 +76,11 @@ Dissertation/docs/latest_draft/files/final submission/20811152_BUSI4374_2526/dat
 !Dissertation/docs/latest_draft/files/final submission/20811152_BUSI4374_2526/20811152_BUSI4374_2526.pdf
 !Dissertation/docs/latest_draft/files/final submission/20811152_BUSI4374_2526.pdf
 !Dissertation/docs/latest_draft/files/final submission/dissertation_final_submission_READY.docx
+
+# Local tool state, and the benchmark data cloned from vlosing/driftDatasets
+.serena/
+Dissertation/driftDatasets/
+
+# Dependencies for Dissertation/scripts/sync-notion-plan.mjs (otherwise caught by *.json)
+!Dissertation/package.json
+!Dissertation/package-lock.json
